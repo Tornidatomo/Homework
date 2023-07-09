@@ -1,0 +1,27 @@
+def split_list(lst, num_parts):
+    if len(lst) < num_parts:
+        return "Ошибка: количество элементов в списке меньше указанного количества частей."
+
+    split_size = len(lst) // num_parts
+    remainder = len(lst) % num_parts
+    result = []
+
+    start = 0
+    for i in range(num_parts):
+        end = start + split_size + (1 if i < remainder else 0)
+        result.append(lst[start:end])
+        start = end
+
+    return result
+
+# Пример использования
+my_list = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+parts = 3
+
+split_result = split_list(my_list, parts)
+if isinstance(split_result, list):
+    print(f"Исходный список: {my_list}")
+    for i, sublist in enumerate(split_result):
+        print(f"Часть {i+1}: {sublist}")
+else:
+    print(split_result)
